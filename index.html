@@ -2,187 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Performance Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Learning Map</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f7fa;
-      color: #333;
-    }
-
-    header {
-      background: #007bff;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    section {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      color: #007bff;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: white;
-    }
-
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #007bff;
-      color: white;
-    }
-
-    canvas {
-      margin-top: 30px;
-      max-width: 100%;
-    }
-
-    footer {
-      background: #333;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
-
   <header>
-    <h1>Student Performance Analysis Dashboard</h1>
+    <h1>Interactive Learning Map</h1>
   </header>
 
-  <section>
-    <h2>Performance Table</h2>
-    <table>
-      <tr>
-        <th>Student</th>
-        <th>Math</th>
-        <th>Science</th>
-        <th>English</th>
-        <th>Total</th>
-      </tr>
-      <tr>
-        <td>Alice</td>
-        <td>85</td>
-        <td>90</td>
-        <td>88</td>
-        <td>263</td>
-      </tr>
-      <tr>
-        <td>Bob</td>
-        <td>78</td>
-        <td>75</td>
-        <td>82</td>
-        <td>235</td>
-      </tr>
-      <tr>
-        <td>Charlie</td>
-        <td>92</td>
-        <td>95</td>
-        <td>94</td>
-        <td>281</td>
-      </tr>
-      <tr>
-        <td>Diana</td>
-        <td>70</td>
-        <td>80</td>
-        <td>72</td>
-        <td>222</td>
-      </tr>
-    </table>
+  <section id="upload">
+    <h2>Upload Your Notes</h2>
+    <input type="file" id="noteInput" accept=".txt,.pdf" />
+    <button onclick="generateMCQs()">Generate MCQs</button>
+  </section>
 
-    <h2>Performance Bar Chart</h2>
-    <canvas id="barChart"></canvas>
+  <section id="quiz" style="display:none;">
+    <h2>Quiz</h2>
+    <form id="quizForm"></form>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+  </section>
 
-    <h2>Subject Average Pie Chart</h2>
-    <canvas id="pieChart"></canvas>
+  <section id="result" style="display:none;">
+    <h2>Your Score</h2>
+    <p id="score"></p>
+    <canvas id="progressChart"></canvas>
   </section>
 
   <footer>
-    &copy; 2025 Student Performance Analysis Project
+    <p>&copy; 2025 Interactive Learning Map</p>
   </footer>
 
-  <script>
-    // Bar Chart
-    const barCtx = document.getElementById('barChart').getContext('2d');
-    new Chart(barCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Alice', 'Bob', 'Charlie', 'Diana'],
-        datasets: [
-          {
-            label: 'Math',
-            data: [85, 78, 92, 70],
-            backgroundColor: 'rgba(255, 99, 132, 0.7)'
-          },
-          {
-            label: 'Science',
-            data: [90, 75, 95, 80],
-            backgroundColor: 'rgba(54, 162, 235, 0.7)'
-          },
-          {
-            label: 'English',
-            data: [88, 82, 94, 72],
-            backgroundColor: 'rgba(255, 206, 86, 0.7)'
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'top' }
-        }
-      }
-    });
-
-    // Pie Chart (Average of each subject)
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
-    new Chart(pieCtx, {
-      type: 'pie',
-      data: {
-        labels: ['Math', 'Science', 'English'],
-        datasets: [{
-          label: 'Average Scores',
-          data: [
-            (85 + 78 + 92 + 70) / 4,
-            (90 + 75 + 95 + 80) / 4,
-            (88 + 82 + 94 + 72) / 4
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.7)',
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(255, 206, 86, 0.7)'
-          ]
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'right' }
-        }
-      }
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
