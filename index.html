@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Learning App</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📚 Smart Learning Assistant</h1>
+  </header>
+
+  <section id="upload">
+    <h2>1. Upload Notes</h2>
+    <input type="file" id="noteInput" accept=".txt,.pdf" />
+    <button onclick="handleUpload()">Generate MCQs</button>
+  </section>
+
+  <section id="quiz" style="display: none;">
+    <h2>2. Take Quiz</h2>
+    <form id="quizForm"></form>
+    <button onclick="submitQuiz()">Submit</button>
+  </section>
+
+  <section id="result" style="display: none;">
+    <h2>3. Your Score</h2>
+    <p id="score"></p>
+    <canvas id="progressChart" width="300" height="300"></canvas>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Student AI App</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
